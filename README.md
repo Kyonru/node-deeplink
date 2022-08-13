@@ -8,7 +8,7 @@ Takes away the pain of forwarding users to the right app store / mobile app depe
 
 In ios >= 9, Apple has made it impossible to provide a smooth user experience to redirect user to app / fallback to app store from javascript. Their clear direction is pushing towards using Universal Links instead.
 
-For more details, see [issue #9](https://github.com/mderazon/node-deeplink/issues/9) and [this blog post](http://email.branch.io/ios-9.2-release-important-announcement).
+For more details, see [issue #9](https://github.com/mderazon/node-deeplink/issues/9) and [this blog post](https://blog.branch.io/uri-schemes-and-universal-links-for-ios).
 
 To get the best user experience, it's probably better to look at Universal Links for [ios](https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html#//apple_ref/doc/uid/TP40016308-CH12) and App Links for [Android](http://developer.android.com/training/app-links/index.html).
 
@@ -24,13 +24,19 @@ Suppose you have a custom url scheme `app://` handled by your mobile apps. You w
 
 ## Usage
 
+### Installation:
+
+```bash
+yarn add @kyonru/node-deeplink
+```
+
 ### Example:
 
-```js
-var express = require('express');
-var deeplink = require('node-deeplink');
+```ts
+import express from 'express';
+import { deeplink } from '@kyonru/node-deeplink';
 
-var app = express();
+const app = express();
 
 app.get(
   '/deeplink',
@@ -39,6 +45,10 @@ app.get(
     android_package_name: 'com.citylifeapps.cups',
     ios_store_link:
       'https://itunes.apple.com/us/app/cups-unlimited-coffee/id556462755?mt=8&uo=4',
+    label: 'Download App',
+    title: 'Cups Unlimited Coffee',
+    timeout: 250,
+    usePathOnFallback: true,
   })
 );
 ```
@@ -60,6 +70,8 @@ Options to pass on to _node-deeplink_ are:
 - `android_package_name`: **optional**. In case you want to support Android deep links, pass your app's package name.
 - `ios_store_link`: **optional**. In case you want to support ios deep links, pass your app's itunes url. You can get it [here](https://linkmaker.itunes.apple.com/us/).
 - `title`: **optional**. Title for the intermediate html page. Defaults to an empty string.
+- `timeout`: **optional**. Time before trying to open the store url. Defaults to 250 milliseconds.
+- `usePathOnFallback`: **optional**. Appends the path from the deeplink url to the fallback url. Defaults to false.
 
 ### Query params
 
