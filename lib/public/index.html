@@ -10,8 +10,16 @@
     <div>
       <h2>{{label}}</h2>
       <div style="justify-content: center">
-        <img src="./images/app_store.svg" height="40" onclick="onClickIOS();" />
         <img
+          style="display: none"
+          id="ios_button"
+          src="./images/app_store.svg"
+          height="40"
+          onclick="onClickIOS();"
+        />
+        <img
+          style="display: none"
+          id="android_button"
           src="./images/play_store.svg"
           height="40"
           onclick="onClickAndroid();"
@@ -29,6 +37,15 @@
         timeout: '{{timeout}}',
         label: '{{label}}',
       };
+
+      if (options.ios_store_link) {
+        document.getElementById('ios_button').style.display = 'inline-block';
+      }
+
+      if (options.android_package_name) {
+        document.getElementById('android_button').style.display =
+          'inline-block';
+      }
 
       deepLink(options);
       function onClickIOS() {
