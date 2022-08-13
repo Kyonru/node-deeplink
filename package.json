@@ -1,5 +1,5 @@
 {
-  "name": "node-deeplink",
+  "name": "@kyonru/node-deeplink",
   "version": "0.6.0",
   "description": "Easily create an endpoint in your web server that redirects deep links to mobile apps",
   "main": "lib/deeplink.js",
@@ -8,11 +8,11 @@
     "fix:prettier": "prettier --write '**/*.{js,md,html}'",
     "test": "npm run test:prettier && mocha test/test.js -t 4000"
   },
-  "author": "Michael Derazon <mderazon@hotmail.com>",
-  "homepage": "https://github.com/mderazon/node-deeplink",
+  "author": "Kyonru <kyonrutest@gmail.com>",
+  "homepage": "https://github.com/kyonru/node-deeplink",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mderazon/node-deeplink.git"
+    "url": "git://github.com/kyonru/node-deeplink.git"
   },
   "license": "MIT",
   "dependencies": {

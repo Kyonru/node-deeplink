@@ -6,7 +6,7 @@ const noop = () => {};
 
 module.exports = function (ua) {
   const obj = {};
-  Browser.localhost('localhost', 3000);
+  Browser.localhost('localhost', 3008);
   const browser = new Browser();
   browser.userAgent = ua;
   const app = express();
@@ -15,7 +15,7 @@ module.exports = function (ua) {
   obj.go = (url, opts, callback) => {
     app.get('/', deeplink(opts));
 
-    server = app.listen(3000);
+    server = app.listen(3008);
 
     let loc = 0;
     browser.on('event', (e, target) => {

@@ -2,10 +2,23 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
   </head>
 
   <body>
+    <div>
+      <h2>{{label}}</h2>
+      <div style="justify-content: center">
+        <img src="./images/app_store.svg" height="40" onclick="onClickIOS();" />
+        <img
+          src="./images/play_store.svg"
+          height="40"
+          onclick="onClickAndroid();"
+        />
+      </div>
+    </div>
+
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript">
       var options = {
@@ -13,8 +26,19 @@
         url: '{{url}}',
         ios_store_link: '{{ios_store_link}}',
         android_package_name: '{{android_package_name}}',
+        timeout: '{{timeout}}',
+        label: '{{label}}',
       };
+
       deepLink(options);
+      function onClickIOS() {
+        var ios_url = options.ios_store_link;
+        window.location.href = ios_url;
+      }
+      function onClickAndroid() {
+        var android_url = `https://play.google.com/store/apps/details?id=${options.android_package_name}`;
+        window.location.href = android_url;
+      }
     </script>
   </body>
 </html>
